@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сейсмопаспорт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #1e1e1e;
+            border: 2px solid #d32f2f;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            color: #d32f2f;
+            border-bottom: 2px solid #d32f2f;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info div {
+            margin: 10px 0;
+            background-color: #2a2a2a;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #d32f2f;
+        }
+        .list {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #d32f2f;
+        }
+        .list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #3a3a3a;
+            border-radius: 5px;
+            border: 1px solid #d32f2f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .list li span {
+            color: #d32f2f;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        /* Стили для кнопки */
+        .button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: #d32f2f;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .button a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button">
+            <a href="index.html">⟵</a>
+        </button>
+        <h1 class="header">Сейсмопаспорт</h1>
+        <div class="info">
+            <div><strong>Имя:</strong> Иван Иванов</div>
+            <div><strong>Возраст:</strong> 35 лет</div>
+            <div><strong>Адрес:</strong> Алматы, Казахстан</div>
+            <div><strong>Контакт:</strong> +7 (727) 123-45-67</div>
+            <div><strong>Электронная почта:</strong> ivan.ivanov@example.com</div>
+            <div><strong>Дата выдачи паспорта:</strong> 15 марта 2025</div>
+        </div>
+        <div class="list">
+            <h2>Список необходимых предметов:</h2>
+            <ul>
+                <li>Фонарик <span>✔</span></li>
+                <li>Вода <span>✔</span></li>
+                <li>Еда <span>✔</span></li>
+                <li>Документы <span>✔</span></li>
+                <li>Аптечка <span>✔</span></li>
+                <li>Одежда <span>✔</span></li>
+                <li>Наличные <span>✔</span></li>
+                <li>Спички <span>✔</span></li>
+                <li>Радио <span>✔</span></li>
+                <li>Зарядное устройство <span>✔</span></li>
+            </ul>
+        </div>
+        <div class="footer">
+            <p>Сейсмопаспорт создан для обеспечения вашей безопасности.</p>
+        </div>
+    </div>
+</body>
+</html>

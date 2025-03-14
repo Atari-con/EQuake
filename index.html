@@ -82,9 +82,9 @@
             right: -300px;
             width: 300px;
             height: 50%;
-            background: rgba(10, 10, 40, 0.9);
+            background: rgba(40, 10, 10, 0.9); /* Изменено на красный */
             border-radius: 15px;
-            box-shadow: 3px 3px 12px rgba(0, 0, 255, 0.6);
+            box-shadow: 3px 3px 12px rgba(255, 0, 0, 0.6);
             padding: 15px;
             text-align: center;
             color: white;
@@ -102,13 +102,13 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background: #000080;
+            background: #800000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0px 5px 10px rgba(0, 0, 255, 0.7);
+            box-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7);
             transition: transform 0.3s ease;
         }
 
@@ -146,9 +146,15 @@
     <div class="app-icon" onclick="toggleAppPopup()">📱</div>
     <div class="app-popup" id="appPopup">
         <img src="photo1.png" alt="Страховка">
+    <a href="Un-2.html">
         <img src="izbrannie.png" alt="Избранные">
+    </a>
+    <a href="Un-1.html">
         <img src="archive.png" alt="Архивация">
+    </a>
+    <a href="Un-3.html">
         <img src="koshelek.png" alt="Подписка">
+    </a>
     </div>
 
     <!-- Правое окно -->
@@ -176,6 +182,38 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
+
+        // Добавление зон
+        const zones = [
+            { center: [43.238, 76.889], radius: 500, color: "red" },
+            { center: [43.225, 76.915], radius: 300, color: "yellow" },
+            { center: [43.205, 76.840], radius: 400, color: "green" }
+        ];
+
+        zones.forEach(zone => {
+            L.circle(zone.center, {
+                color: zone.color,
+                fillColor: zone.color,
+                fillOpacity: 0.3,
+                radius: zone.radius
+            }).addTo(map);
+        });
+
+        // Точки сбора
+        const gatheringPoints = [
+            { lat: 43.238, lng: 76.889, name: "Точка сбора 1 (Красная зона)" },
+            { lat: 43.240, lng: 76.895, name: "Точка сбора 2 (Красная зона)" },
+            { lat: 43.225, lng: 76.915, name: "Точка сбора 3 (Желтая зона)" },
+            { lat: 43.220, lng: 76.925, name: "Точка сбора 4 (Желтая зона)" },
+            { lat: 43.210, lng: 76.860, name: "Точка сбора 5 (Зеленая зона)" },
+            { lat: 43.205, lng: 76.840, name: "Точка сбора 6 (Зеленая зона)" }
+        ];
+
+        gatheringPoints.forEach(point => {
+            L.marker([point.lat, point.lng])
+                .addTo(map)
+                .bindPopup(point.name);
+        });
 
         // Левое окно
         function toggleAppPopup() {

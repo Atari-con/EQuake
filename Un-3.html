@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккаунт и подписки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #1e1e1e;
+            border: 2px solid #d32f2f;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .back-button:hover {
+            background-color: #b71c1c;
+        }
+        .account-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #d32f2f;
+            border-radius: 10px;
+            background-color: #2a2a2a;
+        }
+        .account-section h2 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        .plan {
+            background-color: #2a2a2a;
+            border: 2px solid #d32f2f;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        .plan.free {
+            background: linear-gradient(135deg, #cd7f32, #b87333);
+        }
+        .plan.basic {
+            background: linear-gradient(135deg, #c0c0c0, #a9a9a9);
+        }
+        .plan.premium {
+            background: linear-gradient(135deg, #ffd700, #ffea00);
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .star-container {
+            background: #1e1e1e;
+            padding: 5px 10px;
+            border-radius: 10px;
+            display: flex;
+            gap: 5px;
+        }
+        .star {
+            font-size: 1.5rem;
+        }
+        .star.gold {
+            color: #ffd700;
+        }
+        .star.gray {
+            color: #a9a9a9;
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #d32f2f;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">&larr;</a>
+        <!-- Секция аккаунта -->
+        <div class="account-section">
+            <h2>Информация об аккаунте</h2>
+            <p><strong>Имя:</strong> Иван Иванов</p>
+            <p><strong>Электронная почта:</strong> ivan.ivanov@example.com</p>
+            <p><strong>Уровень аккаунта:</strong> Базовый</p>
+            <p><strong>Дата регистрации:</strong> 01 января 2023</p>
+        </div>
+
+        <!-- Блок подписок -->
+        <div class="plan free">
+            <h3>Бесплатный</h3>
+            <div class="stars">
+                <div class="star-container">
+                    <span class="star gold">★</span>
+                    <span class="star gray">★</span>
+                    <span class="star gray">★</span>
+                </div>
+            </div>
+            <p>Доступ к базовым функциям</p>
+            <button class="btn">Выбрать</button>
+        </div>
+        <div class="plan basic">
+            <h3>Базовый</h3>
+            <div class="stars">
+                <div class="star-container">
+                    <span class="star gold">★</span>
+                    <span class="star gold">★</span>
+                    <span class="star gray">★</span>
+                </div>
+            </div>
+            <p>Расширенные функции</p>
+            <button class="btn">Выбрать</button>
+        </div>
+        <div class="plan premium">
+            <h3>Премиум</h3>
+            <div class="stars">
+                <div class="star-container">
+                    <span class="star gold">★</span>
+                    <span class="star gold">★</span>
+                    <span class="star gold">★</span>
+                </div>
+            </div>
+            <p>Полный доступ ко всем функциям</p>
+            <button class="btn">Выбрать</button>
+        </div>
+    </div>
+</body>
+</html>
