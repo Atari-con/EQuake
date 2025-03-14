@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almaty Interactive Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        /* Стили для карты */
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            overflow-y: auto;
+            background: #121212;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        /* Левое окно */
+        .app-icon {
+            position: fixed;
+            top: 50px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: #800000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(255, 0, 0, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .app-popup {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            width: 90px;
+            background: rgba(40, 10, 10, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 5px;
+            border-radius: 15px;
+            box-shadow: 3px 3px 12px rgba(255, 0, 0, 0.6);
+            gap: 15px;
+            transition: left 0.3s ease-in-out;
+        }
+
+        .app-popup img {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .app-popup img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Правое окно */
+        .side-panel {
+            position: fixed;
+            top: 25%;
+            right: -300px;
+            width: 300px;
+            height: 50%;
+            background: rgba(10, 10, 40, 0.9);
+            border-radius: 15px;
+            box-shadow: 3px 3px 12px rgba(0, 0, 255, 0.6);
+            padding: 15px;
+            text-align: center;
+            color: white;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .side-panel.open {
+            right: 20px;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #000080;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0px 5px 10px rgba(0, 0, 255, 0.7);
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            transform: scale(1.1);
+        }
+
+        table {
+            width: 100%;
+            margin: 10px 0;
+            border-collapse: collapse;
+            color: #ccc;
+        }
+
+        table, th, td {
+            border: 1px solid #444;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        canvas {
+            margin: 15px 0;
+            max-width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <!-- Левое окно -->
+    <div class="app-icon" onclick="toggleAppPopup()">📱</div>
+    <div class="app-popup" id="appPopup">
+        <img src="photo1.png" alt="Страховка">
+        <img src="izbrannie.png" alt="Избранные">
+        <img src="archive.png" alt="Архивация">
+        <img src="koshelek.png" alt="Подписка">
+    </div>
+
+    <!-- Правое окно -->
+    <div class="toggle-button" onclick="toggleSidePanel()">🗂</div>
+    <div class="side-panel" id="sidePanel">
+        <h2>Состояние города</h2>
+        <table>
+            <tr>
+                <th>Время</th>
+            </tr>
+            <tr>
+                <td id="currentTime">00:00:00</td>
+            </tr>
+        </table>
+        <canvas id="trafficChart" width="200" height="200"></canvas>
+        <canvas id="infrastructureChart" width="200" height="200"></canvas>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Карта
+        const map = L.map('map').setView([43.238949, 76.889709], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Левое окно
+        function toggleAppPopup() {
+            const appPopup = document.getElementById("appPopup");
+            appPopup.style.left = appPopup.style.left === "20px" ? "-100px" : "20px";
+        }
+
+        // Правое окно
+        function toggleSidePanel() {
+            const sidePanel = document.getElementById("sidePanel");
+            sidePanel.classList.toggle("open");
+        }
+
+        // Обновление времени
+        function updateTime() {
+            const currentTime = new Date().toLocaleTimeString();
+            document.getElementById("currentTime").textContent = currentTime;
+        }
+        setInterval(updateTime, 1000);
+
+        // Диаграммы
+        const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+        const trafficChart = new Chart(trafficCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Пробки', 'Свободные дороги'],
+                datasets: [{
+                    data: [60, 40],
+                    backgroundColor: ['red', 'green']
+                }]
+            }
+        });
+
+        const infrastructureCtx = document.getElementById('infrastructureChart').getContext('2d');
+        const infrastructureChart = new Chart(infrastructureCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Электроэнергия', 'Вода', 'Интернет'],
+                datasets: [{
+                    data: [80, 90, 70],
+                    backgroundColor: ['blue', 'cyan', 'orange']
+                }]
+            }
+        });
+    </script>
+</body>
+
+</html>

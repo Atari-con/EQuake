@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+    overflow-y: auto;
+    background: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: url('map.jpg') no-repeat center center;
+    background-size: cover;
+    transition: transform 0.1s linear;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.title {
+    margin: 20px 0;
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+}
+
+.footer,
+.popup-buttons {
+    display: flex;
+    justify-content: space-around;
+    background: #2a2a2a;
+    padding: 10px 0;
+}
+
+.footer img,
+.popup-buttons img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.emergency-status {
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    gap:1rem;
+    width: 8rem;
+    height: 6rem;
+    background: rgba(36, 25, 25, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.fire_img{
+    width: 2rem;
+}
+.emergency-status-box{
+    margin: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    gap: 1rem;
+}
+.zone-status {
+    display: flex;
+    align-items: center;
+    width: 8rem;
+    height: 6rem;
+    background: rgba(139, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.popup {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: rgba(42, 42, 42, 0.9);
+    color: white;
+    padding: 20px;
+    transition: bottom 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.arrow {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    cursor: pointer;
+    color: red;
+}
+
+.subscription-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.subscription-level {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    padding: 10px;
+    border-bottom: 1px solid red;
+}
+
+.stars {
+    font-size: 1.5em;
+    color: red;
+}
+
+.subscription-description {
+    width: 80%;
+    margin-top: 10px;
+    text-align: left;
+}
