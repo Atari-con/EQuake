@@ -1,6 +1,6 @@
 {
-  "name": "Название приложения",
-  "short_name": "Короткое имя",
+  "name": "SafePoint",
+  "short_name": "SP",
   "icons": [
     {
       "src": "icon-192.png",
